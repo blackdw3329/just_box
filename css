@@ -1,0 +1,44 @@
+.nav3 {
+  width: 100%;
+  position: relative;
+  text-align: center;
+  font-family: '궁서체';
+}
+
+
+.nav3>a {
+  line-height: 80px;
+  display: block;
+  font-size: 30px;
+  font-weight: 900;
+  position: absolute;
+  left: 30px;
+  text-decoration-line: none;
+
+}
+.nav3>div {
+  padding: 0 20px;
+  height: 30px;
+  position: absolute;
+  right: 30px;
+  top: 40%;
+  transform: translateY(-15px);
+  border: 2px solid #fff;
+  border-radius: 30px;
+  text-decoration-line: none;
+
+}
+.nav3>ul {
+  display: inline-block;
+  text-decoration-line: none;
+
+}
+.nav3>ul li{
+  float: left;
+  line-height: 80px;  
+  padding: 0 30px;
+  list-style-type: none;
+}
+.nav3>ul li a {
+  text-decoration-line: none;
+}
