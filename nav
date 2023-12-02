@@ -1,0 +1,19 @@
+<div class="nav3">
+        <a href="#">logo</a>
+        <ul class="menu4">
+          <li><a href="#">menu1</a></li>
+          <li><a href="#">menu2</a></li>
+          <li><a href="#">menu3</a></li>
+          <li><a href="#">menu4</a></li>
+          <li><a href="#">menu5</a></li>
+        </ul>
+
+        <div class="search-mode">
+            <input type="text">
+            <div class="icon">
+              <div class="search">
+                <i class="fas fa-search"></i>
+              </div>
+            </div>
+        </div>
+      </div>
