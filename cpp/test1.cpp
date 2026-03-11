@@ -24,10 +24,10 @@ int main()
 
 	cout << "이름을 입력하시오: ";
 	cin >> name;
-	cin.ignore();
+	cin.ignore(); // c언어에서 플러시 함수 fflush() => 버퍼 비워주기
 
 	cout << "주소을 입력하시오: ";
-	cin.getline(address, sizeof(address), '\n');
+	cin.getline(address, sizeof(address), ' ');
 
 
 	cout << "1.학번:" << number << endl << "2.이름:" << name << endl << "3.주소:" << address << endl;
