@@ -1,36 +1,24 @@
 #include <iostream>
-#include <cstring>
-
 using namespace std;
-//int main() {
-//	int n;
-//
-//	cout << "정수를 입력 하시오.: ";
-//	cin >> n;
-//	
-//	cout << "x=" << n << "일때 y의 값은 " << n*n+2*n-5 << "입니다.";
-//
-//	return 0;
-//}
 
+class Triangle
+{
+public:
+	int height;
+	int width;
+	double getArea();
+};
+double Triangle::getArea()
+{
+	return 0.5 * width * height;
+}
 int main()
 {
-	char number[10];
-	char name[10];
-	char address[30];
-
-	cout << "학번을 입력하시오: ";
-	cin >> number;
-
-	cout << "이름을 입력하시오: ";
-	cin >> name;
-	cin.ignore(); // c언어에서 플러시 함수 fflush() => 버퍼 비워주기
-
-	cout << "주소을 입력하시오: ";
-	cin.getline(address, sizeof(address), ' ');
-
-
-	cout << "1.학번:" << number << endl << "2.이름:" << name << endl << "3.주소:" << address << endl;
+	Triangle tri;
+	tri.width = 3;
+	tri.height = 5;
+	cout << "삼각형의 면적은 " << tri.getArea() << endl;
+	cout << sizeof(tri.getArea()) << endl;
 
 
 	return 0;
