@@ -14,10 +14,8 @@ public:
 	double getArea();
 
 };
-Triangle::Triangle() {
-	width = 1; height = 1;
-	cout << "밑변 " << width << "높이" << height << "인 삼각형 생성" << endl;
-}
+
+Triangle::Triangle() : Triangle(1, 1) {}
 
 Triangle::Triangle(int w, int h) {
 	width = w; height = h;
