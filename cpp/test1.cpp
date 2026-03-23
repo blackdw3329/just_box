@@ -42,3 +42,48 @@ int main() {
 	return 0;
 }
 
+
+
+// 실습문제 3
+
+#include <iostream>
+
+using namespace std;
+
+class Triangle {
+public:
+	int width;
+	int height;
+	Triangle();
+	Triangle(int w, int h);
+	~Triangle();
+	double getArea();
+
+};
+Triangle::Triangle() {
+	width = 1; height = 1;
+	cout << "밑변 " << width << "높이" << height << "인 삼각형 생성" << endl;
+}
+
+Triangle::Triangle(int w, int h) {
+	width = w; height = h;
+	cout << "밑변 " << width << "높이" << height << "인 삼각형 생성" << endl;
+}
+
+Triangle::~Triangle() {
+	cout << "밑변 " << width << "높이" << height << "인 삼각형 소멸" << endl;
+}
+
+double Triangle::getArea() {
+	return 0.5 * width * height;
+}
+
+Triangle tri1(4, 8);
+Triangle tri2(2, 2);
+
+// 클래스 정의
+int main() {
+	cout << "삼각형의 면적은" << tri2.getArea() << endl;
+	cout << "삼각형의 면적은" << tri1.getArea() << endl;
+	return 0;
+}
