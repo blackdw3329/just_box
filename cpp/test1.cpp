@@ -61,3 +61,5 @@ int main() {
 	cout << "삼각형의 면적은 " << tri3.getArea() << endl;
 	return 0;
 }
+
+// 실습4
