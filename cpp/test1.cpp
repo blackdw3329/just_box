@@ -63,3 +63,33 @@ int main() {
 }
 
 // 실습4
+#include <iostream>
+using namespace std;
+
+
+class Triangle
+{
+public:
+	Triangle(int w, int h) { width = w; height = h; }
+	~Triangle() { }
+	void setWidth(int w) { if (w <= 0)return; this->width = w; }
+	void setHeight(int h) { if (h <= 0)return; this->height = h; }
+	double getArea() { return width * height * 0.5; }
+
+private:
+	int width, height;
+};
+
+int main() {
+	Triangle tri_array[3] = { Triangle(2,2),Triangle(4,4),Triangle(6,6) };
+	Triangle* p = tri_array;
+	for (int i = 0; i < 3; i++){
+		cout << "삼각형" << i << "의 면적은 " << (p+i)->getArea() << endl; }
+	for (int i = 0; i < 3; i++){
+		cout << "삼각형" << i << "의 면적은 " << p[i].getArea() << endl; }
+	for (int i = 0; i < 3; i++){
+		cout << "삼각형" << i << "의 면적은 " << p->getArea() << endl; 
+		p++;
+	}
+	return 0;
+}
