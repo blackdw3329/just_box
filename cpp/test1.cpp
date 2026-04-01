@@ -1,109 +1,63 @@
-// 실습과제 2
-#include <iostream>
+// 실습2
 
+#include <iostream>
 using namespace std;
 
-class Circle {
-private:
-	int radius;
+class Triangle
+{
 public:
-	Circle();
-	int getRadius();
-	void setRadius(int n);
-};
-Circle::Circle() { radius = 1; }
-int Circle::getRadius() { return radius; }
-void Circle::setRadius(int n) { radius = n; }
-int main() {
-	Circle waffle;
-	waffle.setRadius(5);
-	cout << "원의 반지름은" << waffle.getRadius() << endl;
-	return 0;
-}
+	Triangle() { height = 1; width = 1; }
+	~Triangle() {}
+	void setWidth(int w) { if (w <= 0)return; width = w; }
+	void setHeight(int h) { if (h <= 0)return; height = h; }
+	double getArea() { return width * height * 0.5; }
 
-// 실습과제 3
-#include <iostream>
-
-using namespace std;
-
-class Triangle {
 private:
-	int width;
-	int height;
-public:
-	Triangle();
-	Triangle(int w, int h);
-	double getArea();
-	int getWidth();
-	void setWidth(int w);
-	int getHeight();
-	void setHeight(int h);
+	int width, height;
 };
-Triangle::Triangle():Triangle(1,1) {}
-Triangle::Triangle(int w, int h) { width = w; height = h; }
 
-int Triangle::getHeight() { return height; }
-int Triangle::getWidth() { return width; }
-void Triangle::setHeight(int h) { height = h; }
-void Triangle::setWidth(int w) { width = w; }
-
-double Triangle::getArea() { return 0.5 * height * width; }
 
 int main() {
+	unique_ptr<Triangle> ptr1(new Triangle());
+	// Triangle tri; 객체포인터변수 선언 및 초기화 코드 추가
 	Triangle tri;
-	tri.setWidth(3);
-	tri.setHeight(5);
-	cout << "삼각형의 폭은 " << tri.getWidth() << endl;
-	cout << "삼각형의 높이는 " << tri.getHeight() << endl;
-	cout << "삼각형의 높이는 " << tri.getArea() << endl;
+	Triangle* p;
+	p = &tri;
+	// tri.setWidth(3); 객체포인터 표현으로 변경
+
+	p->setWidth(3);
+	// tri.setHeight(5); 객체포인터 표현으로 변경
+
+	p->setHeight(5);
+	// cout << "삼각형의 면적은"<< tri.getArea()<< endl; 포인터표현으로 변경
+	cout << "삼각형의 면적은" << p->getArea() << endl;
 	return 0;
 }
 
-// 실습과제4
+//실습3
 #include <iostream>
-
 using namespace std;
 
-class Triangle {
-private:
-	int width;
-	int height;
+
+class Triangle
+{
 public:
-	Triangle();
-	Triangle(int w, int h);
-	~Triangle();
-	double getArea();	
-	int getWidth();
-	void setWidth(int w);
-	int getHeight();
-	void setHeight(int h);
+	Triangle() { this->height = 1; this->width = 1; }
+	~Triangle() {}
+	void setWidth(int w) { if (w <= 0)return; this->width = w; }
+	void setHeight(int h) { if (h <= 0)return; this->height = h; }
+	double getArea() { return width * height * 0.5; }
+
+private:
+	int width, height;
 };
-Triangle::Triangle():Triangle(1,1) {}
-Triangle::Triangle(int w, int h) { 
-	if (w < 0 || h < 0) {
-		cout << "길이는 양수여야함, 대신에 폭1,높이1 삼각형생성" << endl;
-		width = 1; height = 1;
-	}
-	else width = w; height = h;
-}
-Triangle::~Triangle() { cout << "폭" << width << ", 높이" << height << " 삼각형 소멸" << endl; }
-
-int Triangle::getHeight() { return height; }
-int Triangle::getWidth() { return width; }
-void Triangle::setHeight(int h) { if (h < 0) cout << "폭은 양수이어야 함" << endl; 
-else height = h; }
-void Triangle::setWidth(int w) { if (w < 0) cout << "높이는 양수이어야 함" << endl;
-else width = w; }
-
-double Triangle::getArea() { return 0.5 * height * width; }
 
 int main() {
-	Triangle tri(-10, -5);
-	tri.setWidth(-3);
-	tri.setHeight(-5);
-	tri.setWidth(3);
-	tri.setHeight(5);
-	cout << "삼각형의 폭은 " << tri.getWidth() << endl;
-	cout << "삼각형의 높이는 " << tri.getHeight() << endl;
+	Triangle tri1; // 밑변=높이=1로 초기화
+	cout << "삼각형의 면적은 " << tri1.getArea() << endl;
+	Triangle tri2(10); // 밑변=10,높이=1로 초기화
+	cout << "삼각형의 면적은 " << tri2.getArea() << endl;
+	Triangle tri3(10, 2); // 밑변=10,높이=2로 초기화
+	cout << "삼각형의 면적은 " << tri3.getArea() << endl;
 	return 0;
 }
