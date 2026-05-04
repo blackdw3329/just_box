@@ -73,3 +73,35 @@ void SwapString(string *s1, string* s2) {
 	*s1 = *s2;
 	*s2 = tmp;
 }
+
+
+//실습5
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+string GetLatterString(string arr[]);
+
+int main() {
+	string res;
+	string names[5];
+	for (int i = 0; i < 5; i++) {
+		cout << "이름 >> ";
+		getline(cin, names[i], '\n');
+	}
+
+	GetLatterString(names);
+
+	cout << "사전에서 뒤에 나오는 문자열은 " << res << "입니다" << endl;
+	return 0;
+}
+
+string GetLatterString(string arr[]) {
+	string tmp;
+	tmp = arr[0];
+	for (int i = 0; i < 5; i++) {
+		if (tmp > arr[i]) tmp = arr[i];
+	}
+	return tmp;
+}
