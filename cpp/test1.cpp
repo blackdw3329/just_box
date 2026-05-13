@@ -1,52 +1,129 @@
 //실습1
-//함수 호출시 자동으로 처리되는 2가지 => 매개변수 메모리 할당, 매개변수를 인자값으로 초기화
+
 
 //실습2
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
-
 using namespace std;
 
-string GetLatterString(string s1, string s2);
+class Person {
+    string name;
+    int id;
 
-int main() {
-	string s1("hello");
-	string s2("world");
-	string res;
+public:
+    Person(int id, const string name);
+    Person(const Person& person);
+    ~Person();
 
-	res = GetLatterString(s1, s2);
+    void changeName(const string name);
 
-	cout << "사전에서 뒤에 나오는 문자열은 " << res << "입니다" << endl;
-	return 0;
+    void show() {
+        cout << id << ", " << name << endl;
+    }
+};
+
+Person::Person(int id, const string name) {
+    this->id = id;
+    this->name = name;
 }
 
-string GetLatterString(string s1, string s2) {
-	if (s1 > s2) return s1;
-	else return s2;
+Person::Person(const Person& person) {
+    this->id = person.id;
+    this->name = person.name;
+
+    cout << "복사 생성자 실행. 원본 객체의 이름 " << this->name << endl;
+}
+
+Person::~Person() {
+}
+
+void Person::changeName(const string name) {
+    this->name = name;
+}
+
+int main() {
+    Person father(1, "Kitae");
+    Person daughter(father);
+
+    cout << "daughter 객체 생성 직후 ----" << endl;
+    father.show();
+    daughter.show();
+
+    daughter.changeName("Grace");
+
+    cout << "daughter 이름을 Grace로 변경한 후 ----" << endl;
+    father.show();
+    daughter.show();
+
+    return 0;
 }
 
 //실습3
+#define _CRT_SECURE_NO_WARNINGS
 #include <iostream>
 #include <string>
-
 using namespace std;
 
-string GetLatterString(string *s1, string *s2);
+class Mystack {
+	int* p;			//배열 주소
+	int size;	//배열의 크기
+	int tos;	//다음에 저장할 배열의 인덱스
+public:
+	Mystack();
+	Mystack(int size);
+	Mystack(const Mystack& src);
+	~Mystack();
+	bool push(int n);	//꽉 차있으면 false 비어있으면 true
+	bool pop(int& n);	//비어있으면 false 비어있으면 true
 
-int main() {
-	string s1("hello");
-	string s2("world");
-	string res;
+};
+Mystack::Mystack() :Mystack(10) {}
+Mystack::Mystack(int size) {
+	this->size = size;
+	this->tos = 0;
+	p = new int[size];
+}
+Mystack::Mystack(const Mystack& src) {
+	this->size = src.size;
+	this->tos = src.tos;
 
-	res = GetLatterString(&s1, &s2);
+	p = new int[size];
 
-	cout << "사전에서 뒤에 나오는 문자열은 " << res << "입니다." << endl;
-	return 0;
+	for (int i = 0; i < tos; i++) {
+		p[i] = src.p[i];
+	}
+}
+Mystack::~Mystack() {
+	delete []p;
+}
+bool Mystack::push(int n) {
+	if (size <= tos) return false; 
+	else {
+		p[tos++] = n;
+		return true;
+	}
+}
+bool Mystack::pop(int& n) {
+	if (tos == 0) return false;
+	else {
+		n = p[--tos];
+		return true;
+	}
 }
 
-string GetLatterString(string *s1, string *s2) {
-	if (*s1 > *s2) return *s1;
-	else return *s2;
+int main() {
+	Mystack a(10);
+	a.push(10);
+	a.push(20);
+
+	Mystack b = a;
+	b.push(30);
+	int n;
+	a.pop(n);
+	cout << "스택 a에서 팝한 값 " << n << endl;	//20
+	b.pop(n);
+	cout << "스택 b에서 팝한 값 " << n << endl;	//30
 }
 
 //실습4
@@ -76,32 +153,3 @@ void SwapString(string *s1, string* s2) {
 
 
 //실습5
-#include <iostream>
-#include <string>
-
-using namespace std;
-
-string GetLatterString(string arr[]);
-
-int main() {
-	string res;
-	string names[5];
-	for (int i = 0; i < 5; i++) {
-		cout << "이름 >> ";
-		getline(cin, names[i], '\n');
-	}
-
-	GetLatterString(names);
-
-	cout << "사전에서 뒤에 나오는 문자열은 " << res << "입니다" << endl;
-	return 0;
-}
-
-string GetLatterString(string arr[]) {
-	string tmp;
-	tmp = arr[0];
-	for (int i = 0; i < 5; i++) {
-		if (tmp > arr[i]) tmp = arr[i];
-	}
-	return tmp;
-}
